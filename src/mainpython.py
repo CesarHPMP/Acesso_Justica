@@ -15,3 +15,11 @@ fd = open("../DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
 viewer = SimplePDFViewer(fd)
 
 print(viewer.metadata)
+
+for canvas in viewer:
+    canvas_strings = canvas.strings
+    # print(canvas_strings) adquire as strings por caractere individual, ver se ha como dividir por espaco.
+
+for canvas in viewer:
+    page_text = canvas.text_content
+    print(page_text)
