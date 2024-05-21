@@ -8,4 +8,10 @@
 # - Guardar local em que dado se encontra dentro do arquivo e retornanr para usuario como resultado de pesquisa.
 # - avaliacao correta de importancia para melhores resultados (frequencia do token em um dado arquivo e ou quao perto do inicio este aparece?)
 
+import pdfreader
+from pdfreader import PDFDocument, SimplePDFViewer
 
+fd = open("../DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
+viewer = SimplePDFViewer(fd)
+
+print(viewer.metadata)
