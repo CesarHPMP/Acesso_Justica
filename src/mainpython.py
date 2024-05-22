@@ -8,8 +8,10 @@
 # - Guardar local em que dado se encontra dentro do arquivo e retornanr para usuario como resultado de pesquisa.
 # - avaliacao correta de importancia para melhores resultados (frequencia do token em um dado arquivo e ou quao perto do inicio este aparece?)
 
+import operator
 import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
+
 
 fd = open("../DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
 viewer = SimplePDFViewer(fd)
@@ -30,24 +32,31 @@ viewer.render
 # usar hash table nativa com 'hash_table = {}'
 
 
-i = 0
-j = 0
 
 hash_table = {}
 texto = []
-char = ' '
-key = ''
+char = ''
+resultados = []
 
 for canvas in viewer:
     canvas_strings = canvas.strings
     texto = canvas_strings
     for x in texto:
-        if x != ' ':
+
+        if x != ' ' and x != ',' and x != ';' and x != '?' and x != '!' and x != '.':
             char += x;
             
         else:
-            print(char)
-            hash_table[char] += 1
+            teste = hash_table.get(char)
+            
+            if teste:
+                hash_table[char] += 1
+            else:
+                hash_table[char] = 1
+
             char = ''
 
-print(hash_table)
+resultados = sorted(hash_table.items(), key=operator.itemgetter(1))
+
+print(resultados)
+
