@@ -13,13 +13,41 @@ from pdfreader import PDFDocument, SimplePDFViewer
 
 fd = open("../DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
 viewer = SimplePDFViewer(fd)
+viewer.render
 
-print(viewer.metadata)
+
+# for canvas in viewer: python é lento portanto é necessário filtrar resultados antes de ler e/ou exibir 
+    #canvas_strings = canvas.strings #segura todos os caracteres de forma individual, sera importante.
+    #adquire as strings por caractere individual, ver se ha como dividir por espaco.
+
+    # for canvas in viewer:
+    #    page_text = canvas.text_content
+    #    print(page_text)
+
+
+# começando implementacao de tabela hash para token separando por espaco ' '
+# metodo = adquirir caractere individual, atribui-lo a um vetor e acessar conteudo. (Procurando APIs de hash para utilizcao de codigo open source)
+# usar hash table nativa com 'hash_table = {}'
+
+
+i = 0
+j = 0
+
+hash_table = {}
+texto = []
+char = ' '
+key = ''
 
 for canvas in viewer:
     canvas_strings = canvas.strings
-    # print(canvas_strings) adquire as strings por caractere individual, ver se ha como dividir por espaco.
+    texto = canvas_strings
+    for x in texto:
+        if x != ' ':
+            char += x;
+            
+        else:
+            print(char)
+            hash_table[char] += 1
+            char = ''
 
-for canvas in viewer:
-    page_text = canvas.text_content
-    print(page_text)
+print(hash_table)
