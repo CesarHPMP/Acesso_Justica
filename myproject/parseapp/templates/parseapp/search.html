@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Laws</title>
+    <title>Search PDF</title>
 </head>
 <body>
-    <h1>Search for a Law or Keyword</h1>
+    <h1>Search PDF</h1>
     <form method="get" action="{% url 'parse_pdf' %}">
-        <input type="text" name="keyword" placeholder="Enter keyword">
+        <input type="text" name="keyword" placeholder="Enter keyword" required>
         <button type="submit">Search</button>
     </form>
 </body>
