@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results for "{{ keyword }}"</h1>
+    <ul>
+        {% for result in resultados %}
+        <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Back to Search</a>
+</body>
+</html>
