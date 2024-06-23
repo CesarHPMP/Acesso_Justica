@@ -13,33 +13,30 @@ import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
 
 
-fd = open("../DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
+fd = open("./DATA/Constituicao.ADCTde1988EC132.pdf", "rb") 
 viewer = SimplePDFViewer(fd)
 
-hash_table = {}
-texto = []
-char = ''
+texto = ''
 resultados = []
+canvas_strings = ''
 
 for canvas in viewer:
-    canvas_strings = canvas.strings
-    texto = canvas_strings
-    for x in texto:
+    if canvas_strings:
+        canvas_strings = canvas_strings + canvas.strings
+        
+    else:
+        canvas_strings = canvas.strings
 
-        if x != ' ' and x != ',' and x != ';' and x != '?' and x != '!' and x != '.':
-            char += x;
-            
-        elif char != '':
-            teste = hash_table.get(char)
-            
-            if teste:
-                hash_table[char] += 1
-            else:
-                hash_table[char] = 1
+for values in canvas_strings:
+    if texto:
+        holder = values.split("Art.")
+        texto+=holder
 
-            char = ''
+    else:
+        texto = values.split("Art.")
 
-resultados = sorted(hash_table.items(), key=operator.itemgetter(1))
+keyword = input("Digite a lei que deseja ou palavra chave: ")
 
-print(resultados)
-
+for splits in texto:
+    if keyword in splits:
+        print(splits)
