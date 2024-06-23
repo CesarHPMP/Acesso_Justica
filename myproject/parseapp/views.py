@@ -8,7 +8,7 @@ def home(request):
 def parse_pdf(request):
     keyword = request.GET.get('keyword', '').lower()
 
-    fd = open("./DATA/Constituicao.ADCTde1988EC132.pdf", "rb")
+    fd = open("./DATA/ConstituicaoTextoAtualizadoEC132.pdf", "rb")
     viewer = SimplePDFViewer(fd)
 
     texto = ''
@@ -16,7 +16,8 @@ def parse_pdf(request):
     canvas_strings = ''
     hash_table = {}
     holder = []
-    characters = ''
+    leis = ''
+    character = ''
 
     # Read and concatenate text from the PDF
     for canvas in viewer:
@@ -25,20 +26,19 @@ def parse_pdf(request):
         else:
             canvas_strings = canvas.strings
 
-    print(canvas_strings)
+    for character in canvas_strings:
+        if texto:
+            texto += character
+
+        else:
+            texto = character
 
     # Split the text into articles and create the hash table
-    for index, values in enumerate(canvas_strings):
-        holder = values.split("Art.")
-        characters = values.split(" ", "")
-        print(characters)
-        
-        if texto:
-            texto += holder
-        else:
-            texto = holder
-            # Store articles in the hash table
-    for split in texto:
+
+    leis = texto.split('Art.')
+    print(leis)
+
+    for split in leis:
         words = split.lower().split()  # Split the text into individual words
         for word in words:
             if word not in hash_table:
