@@ -2,12 +2,31 @@
 <html>
 <head>
     <title>Search PDF</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .form-control {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Search PDF</h1>
-    <form method="get" action="{% url 'parse_pdf' %}">
-        <input type="text" name="keyword" placeholder="Enter keyword" required>
-        <button type="submit">Search</button>
-    </form>
+    <div class="container">
+        <h1 class="text-center">Search PDF</h1>
+        <form method="get" action="{% url 'parse_pdf' %}">
+            <div class="form-group">
+                <input type="text" class="form-control" name="keyword" placeholder="Enter keyword" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

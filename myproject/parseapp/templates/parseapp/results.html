@@ -2,18 +2,41 @@
 <html>
 <head>
     <title>Search Results</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .result-item {
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Search Results for "{{ keyword }}"</h1>
-    {% if resultados %}
-        <ul>
-            {% for result in resultados %}
-                <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
-    <a href="{% url 'home' %}">New Search</a>
+    <div class="container">
+        <h1 class="text-center">Search Results for "{{ keyword }}"</h1>
+        {% if resultados %}
+            <div>
+                {% for result in resultados %}
+                    <div class="result-item">
+                        <p>{{ result }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center">No results found.</p>
+        {% endif %}
+        <div class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-secondary">New Search</a>
+        </div>
+    </div>
 </body>
 </html>
