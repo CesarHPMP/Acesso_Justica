@@ -17,6 +17,7 @@
             margin-bottom: 10px;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: medium;
         }
     </style>
 </head>
@@ -27,7 +28,8 @@
             <div>
                 {% for result in resultados %}
                     <div class="result-item">
-                        <p>{{ result }}</p>
+                        <p>{{ result.title }}</p>
+                        <p>{{ result.content }}</p>
                     </div>
                 {% endfor %}
             </div>
